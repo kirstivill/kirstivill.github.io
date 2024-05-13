@@ -226,10 +226,10 @@ input, select, textarea {
 
     .coming_soon {
         font-size: 10px;
-		margin: 3px;
+	margin: 3px;
         border: 1px solid white;
         padding: 2px; 
-		border-radius: 3px;
+	border-radius: 3px;
     }
 
 	.container {
