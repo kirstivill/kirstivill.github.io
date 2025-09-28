@@ -128,6 +128,17 @@ class PenguinGame {
     }
 
     waddle() {
+        // Hide the click arrow after 3 clicks
+        if (!this.gameState.clickCount) {
+            this.gameState.clickCount = 0;
+        }
+        this.gameState.clickCount++;
+
+        const clickArrow = document.getElementById('click-arrow');
+        if (clickArrow && this.gameState.clickCount >= 3) {
+            clickArrow.style.display = 'none';
+        }
+
         // Check if we have energy
         if (this.gameState.energy <= 0) {
             return; // Can't waddle without energy
@@ -258,9 +269,19 @@ class PenguinGame {
 
         document.querySelector('.map').appendChild(message);
 
+        // Show fish arrow
+        const fishArrow = document.getElementById('fish-arrow');
+        if (fishArrow) {
+            fishArrow.style.display = 'block';
+        }
+
         // Remove message after animation
         setTimeout(() => {
             message.remove();
+            // Hide fish arrow after message disappears
+            if (fishArrow) {
+                fishArrow.style.display = 'none';
+            }
         }, 3000);
     }
 
@@ -392,6 +413,7 @@ class PenguinGame {
 let game;
 window.addEventListener('load', () => {
     game = new PenguinGame();
+    // Don't start auto-waddle automatically - wait for user to click "Got it!"
 });
 
 // Global functions for HTML onclick events
@@ -414,4 +436,17 @@ function closePopup() {
 
 function buyEnergy() {
     if (game) game.buyEnergy();
+}
+
+function startGame() {
+    // Hide the welcome popup
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    if (welcomeOverlay) {
+        welcomeOverlay.style.display = 'none';
+    }
+
+    // Start the game if it exists
+    if (game) {
+        game.startAutoWaddle();
+    }
 }
