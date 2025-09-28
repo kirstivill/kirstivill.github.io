@@ -317,6 +317,100 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+
+        .coin-button::before {
+            content: "✨";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            font-size: 1.2em;
+            animation: sparkle1 2s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .coin-button::after {
+            content: "✨";
+            position: absolute;
+            top: -5px;
+            right: -15px;
+            font-size: 1em;
+            animation: sparkle2 2s ease-in-out infinite 0.5s;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            font-size: 0.8em;
+            animation: sparkle3 2s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .sparkle:nth-child(1) {
+            top: 10px;
+            left: -20px;
+            animation-delay: 0s;
+        }
+
+        .sparkle:nth-child(2) {
+            bottom: -5px;
+            right: -20px;
+            animation-delay: 1s;
+        }
+
+        .sparkle:nth-child(3) {
+            top: -15px;
+            right: 5px;
+            animation-delay: 1.5s;
+        }
+
+        .sparkle:nth-child(4) {
+            bottom: 10px;
+            left: -15px;
+            animation-delay: 0.7s;
+        }
+
+        @keyframes sparkle1 {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(0.8) rotate(0deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        @keyframes sparkle2 {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(0.8) rotate(0deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(-180deg);
+            }
+        }
+
+        @keyframes sparkle3 {
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(0.6) rotate(0deg);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1) rotate(360deg);
+            }
         }
 
         .coin-button:hover {
@@ -620,6 +714,10 @@
                 <div class="popup-title">Final Chance!</div>
                 <div class="popup-message">Help the last penguin reach the hut!</div>
                 <button class="coin-button" onclick="buyEnergy()">
+                    <div class="sparkle">✨</div>
+                    <div class="sparkle">✨</div>
+                    <div class="sparkle">✨</div>
+                    <div class="sparkle">✨</div>
                     <img src="coin-794.svg" alt="Coin" style="width: 60px; height: 60px;">
                 </button>
             </div>
